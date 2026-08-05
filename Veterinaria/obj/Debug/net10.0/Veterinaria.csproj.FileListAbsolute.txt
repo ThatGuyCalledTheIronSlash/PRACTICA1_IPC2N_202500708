@@ -1,0 +1,5 @@
+C:\Users\ironm\Downloads\IPC2N2026\Prácticas\IPC2_Practica1_202602_202500708\Veterinaria\obj\Debug\net10.0\Veterinaria.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ironm\Downloads\IPC2N2026\Prácticas\IPC2_Practica1_202602_202500708\Veterinaria\obj\Debug\net10.0\Veterinaria.AssemblyInfoInputs.cache
+C:\Users\ironm\Downloads\IPC2N2026\Prácticas\IPC2_Practica1_202602_202500708\Veterinaria\obj\Debug\net10.0\Veterinaria.AssemblyInfo.cs
+C:\Users\ironm\Downloads\IPC2N2026\Prácticas\IPC2_Practica1_202602_202500708\Veterinaria\obj\Debug\net10.0\Veterinaria.csproj.CoreCompileInputs.cache
+C:\Users\ironm\Downloads\IPC2N2026\Prácticas\IPC2_Practica1_202602_202500708\Veterinaria\obj\Debug\net10.0\Veterinaria.sourcelink.json
