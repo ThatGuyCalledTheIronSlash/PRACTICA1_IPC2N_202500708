@@ -26,16 +26,19 @@ class Program
     {
         MenuConsola.LimpiarPantalla();
         Console.WriteLine();
-        Console.WriteLine("=== VETERINARIA ===");
-        Console.WriteLine($"Pacientes registrados: {veterinaria.CantidadPacientes()}");
+        Console.WriteLine("====VETERINARIA====");
         Console.WriteLine("1. Registrar mascota");
         Console.WriteLine("2. Gestionar pacientes");
         Console.WriteLine("3. Salir");
+        Console.WriteLine();
+        Console.WriteLine($"Pacientes registrados: {veterinaria.CantidadPacientes()}");
+        Console.WriteLine("=====================");
     }
 
     static void RegistrarMascota()
     {
-        Console.WriteLine("--- Registrar mascota ---");
+        MenuConsola.LimpiarPantalla();
+        Console.WriteLine("==== Registrar mascota ====");
         Console.WriteLine("1. Perro  2. Gato  3. Ave  4. Tortuga");
         Console.WriteLine("0. Volver al menú principal");
         int especie = MenuConsola.LeerOpcion("Seleccione especie: ", 0, 4);
@@ -53,6 +56,7 @@ class Program
 
         switch (especie)
         {
+            
             //Perro 
             case 1:
                 string raza = MenuConsola.LeerTexto("Raza: ");
@@ -90,45 +94,59 @@ class Program
         {
             Console.WriteLine("No hay pacientes registrados.");
             MenuConsola.Pausar();
+            MenuConsola.LimpiarPantalla();
             return;
         }
-
+        string codigo;
+        do
+        {
         veterinaria.ListarCodigos();
-        string codigo = MenuConsola.LeerTexto("Ingrese el código del paciente (Ingrese 0 para salir): ");
+        codigo = MenuConsola.LeerTexto("Ingrese el código del paciente (Ingrese 0 para salir): ");
         
             if (codigo == "0") return; //Salir de la función si el usuario ingresa 0
-         
+
         Mascota mascota = veterinaria.BuscarPorCodigo(codigo);
         if (mascota == null)
         {
             Console.WriteLine("No se encontró ningún paciente con ese código.");
             MenuConsola.Pausar();
-            return;
+            continue;
         }
+        int opcion;
+            do {
+                MenuConsola.LimpiarPantalla();
+                Console.WriteLine();
+                Console.WriteLine($"====MASCOTA ENCONTRADA: {mascota.Nombre} ====");
+                Console.WriteLine("1. Cambiar estado de Salud");
+                Console.WriteLine("2. Calcular dosis de medicamento");
+                Console.WriteLine("3. Ver información completa");
 
-        Console.WriteLine();
-        Console.WriteLine("0. Volver al menú principal");
-        Console.WriteLine("1. Cambiar estado");
-        Console.WriteLine("2. Calcular dosis de medicamento");
-        Console.WriteLine("3. Ver información");
-        int opcion = MenuConsola.LeerOpcion("Seleccione una opción: ", 0, 3);
+                opcion = MenuConsola.LeerOpcion("Seleccione una opción(Presione 0 para salir): ", 0, 3);
 
-        switch (opcion)
-        {
-            case 0:
-                return; //Salir de la función si el usuario elige volver al menú principal
-            case 1:
-                mascota.CambiarEstado();
-                Console.WriteLine("Estado actualizado.");
-                break;
-            case 2:
-                double dosisPorKg = MenuConsola.LeerDouble("Dosis por Kg (mg/kg): ");
-                Console.WriteLine($"Dosis a administrar: {mascota.CalcularDosis(dosisPorKg)} mg");
-                break;
-            case 3:
-                mascota.MostrarInformacion();
-                break;
-        }
-        MenuConsola.Pausar();
+                switch (opcion)
+                {
+                case 0:
+                    MenuConsola.LimpiarPantalla();
+                    return; //Salir de la función si el usuario elige volver al menú principal
+                case 1:
+                    mascota.CambiarEstado();
+                    Console.WriteLine("Estado de salud actualizado.!");
+                    MenuConsola.Pausar();
+                    break;
+                case 2:
+                    double dosisPorKg = MenuConsola.LeerDouble("Dosis por Kg (mg/kg): ");
+                    Console.WriteLine($"Dosis a administrar: {mascota.CalcularDosis(dosisPorKg)} mg");
+                    MenuConsola.Pausar();
+                    break;
+                case 3:
+                    MenuConsola.LimpiarPantalla();
+                    Console.WriteLine($"=== Información completa de la mascota: {mascota.Nombre} ===");
+                    Console.WriteLine();
+                    mascota.MostrarInformacion();
+                    MenuConsola.Pausar();
+                    break;
+                }
+            } while (opcion != 0);
+        } while (true);
     }
 }

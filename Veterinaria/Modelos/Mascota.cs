@@ -24,6 +24,10 @@ public abstract class Mascota
 //------------------------------------------------------
     public double Peso   { get { return peso; }   set { peso = value; } }
 //------------------------------------------------------
+    public string Sexo   { get { return sexo; }   set { sexo = value; } }
+//------------------------------------------------------
+    public string Propietario { get { return propietario; } set { propietario = value; } }
+//------------------------------------------------------
     public int Edad      { get { return edad; }   set { edad = value; } }
 //------------------------------------------------------
     public string Codigo { get { return codigo; } }
