@@ -24,6 +24,7 @@ class Program
 
     static void MostrarMenuPrincipal()
     {
+        MenuConsola.LimpiarPantalla();
         Console.WriteLine();
         Console.WriteLine("=== VETERINARIA ===");
         Console.WriteLine($"Pacientes registrados: {veterinaria.CantidadPacientes()}");
@@ -34,10 +35,12 @@ class Program
 
     static void RegistrarMascota()
     {
-        Console.WriteLine();
         Console.WriteLine("--- Registrar mascota ---");
         Console.WriteLine("1. Perro  2. Gato  3. Ave  4. Tortuga");
-        int especie = MenuConsola.LeerOpcion("Seleccione especie: ", 1, 4);
+        Console.WriteLine("0. Volver al menú principal");
+        int especie = MenuConsola.LeerOpcion("Seleccione especie: ", 0, 4);
+
+        if (especie == 0) return; //Salir de la función si el usuario elige volver al menú principal
 
         string nombre = MenuConsola.LeerTexto("Nombre: ");
         double peso = MenuConsola.LeerDouble("Peso (kg): ");
@@ -46,25 +49,29 @@ class Program
         string propietario = MenuConsola.LeerTexto("Propietario: ");
         bool enfermo = MenuConsola.LeerSiNo("¿Está enfermo?");
 
-        Mascota nuevaMascota = null;
+        Mascota? nuevaMascota = null;
 
         switch (especie)
         {
+            //Perro 
             case 1:
                 string raza = MenuConsola.LeerTexto("Raza: ");
-                string tamano = MenuConsola.LeerTexto("Tamaño (grande/mediano/pequeño): ");
+                string tamano = MenuConsola.LeerTamano();
                 nuevaMascota = new Perro(nombre, peso, sexo, edad, propietario, enfermo, raza, tamano);
                 break;
+            //Gato
             case 2:
                 string razaGato = MenuConsola.LeerTexto("Raza: ");
                 bool esterilizado = MenuConsola.LeerSiNo("¿Está esterilizado?");
                 nuevaMascota = new Gato(nombre, peso, sexo, edad, propietario, enfermo, razaGato, esterilizado);
                 break;
+            //Ave
             case 3:
                 double envergadura = MenuConsola.LeerDouble("Envergadura de alas (cm): ");
                 bool puedeVolar = MenuConsola.LeerSiNo("¿Puede volar?");
                 nuevaMascota = new Ave(nombre, peso, sexo, edad, propietario, enfermo, envergadura, puedeVolar);
                 break;
+            //Tortuga
             case 4:
                 string caparazon = MenuConsola.LeerTexto("Tipo de caparazón: ");
                 bool esAcuatica = MenuConsola.LeerSiNo("¿Es acuática?");
@@ -74,34 +81,42 @@ class Program
 
         veterinaria.Registrar(nuevaMascota);
         Console.WriteLine($"Mascota registrada con código: {nuevaMascota.Codigo}");
-    }
+        MenuConsola.Pausar();
+    }   
 
     static void GestionarPacientes()
     {
         if (veterinaria.CantidadPacientes() == 0)
         {
             Console.WriteLine("No hay pacientes registrados.");
+            MenuConsola.Pausar();
             return;
         }
 
         veterinaria.ListarCodigos();
-        string codigo = MenuConsola.LeerTexto("Ingrese el código del paciente: ");
+        string codigo = MenuConsola.LeerTexto("Ingrese el código del paciente (Ingrese 0 para salir): ");
+        
+            if (codigo == "0") return; //Salir de la función si el usuario ingresa 0
+         
         Mascota mascota = veterinaria.BuscarPorCodigo(codigo);
-
         if (mascota == null)
         {
             Console.WriteLine("No se encontró ningún paciente con ese código.");
+            MenuConsola.Pausar();
             return;
         }
 
         Console.WriteLine();
+        Console.WriteLine("0. Volver al menú principal");
         Console.WriteLine("1. Cambiar estado");
         Console.WriteLine("2. Calcular dosis de medicamento");
         Console.WriteLine("3. Ver información");
-        int opcion = MenuConsola.LeerOpcion("Seleccione una opción: ", 1, 3);
+        int opcion = MenuConsola.LeerOpcion("Seleccione una opción: ", 0, 3);
 
         switch (opcion)
         {
+            case 0:
+                return; //Salir de la función si el usuario elige volver al menú principal
             case 1:
                 mascota.CambiarEstado();
                 Console.WriteLine("Estado actualizado.");
@@ -114,5 +129,6 @@ class Program
                 mascota.MostrarInformacion();
                 break;
         }
+        MenuConsola.Pausar();
     }
 }
