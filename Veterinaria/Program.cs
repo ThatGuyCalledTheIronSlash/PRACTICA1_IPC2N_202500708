@@ -126,8 +126,7 @@ class Program
                 switch (opcion)
                 {
                 case 0:
-                    MenuConsola.LimpiarPantalla();
-                    return; //Salir de la función si el usuario elige volver al menú principal
+                    break; //Salir de la función si el usuario elige volver al menú principal
                 case 1:
                     mascota.CambiarEstado();
                     Console.WriteLine("Estado de salud actualizado.!");

@@ -13,6 +13,7 @@ public class Perro : Mascota
     }
 
     public string Raza { get { return raza; } set { raza = value; } }
+    public string Tamano { get { return tamano; } set { tamano = value; } }
 
     // Dosis estándar: peso x mg/kg, sin ajuste adicional
     public override double CalcularDosis(double dosis_por_Kg)

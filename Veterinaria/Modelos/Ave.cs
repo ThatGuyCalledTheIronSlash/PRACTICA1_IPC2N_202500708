@@ -28,6 +28,6 @@ public override void MostrarInformacion()
     {
         Console.WriteLine("== AVE ==");
         base.MostrarInformacion();
-        Console.WriteLine($"Envergadura de alas: {envergaduraAlas} m | Puede volar: {(puedeVolar ? "Sí" : "No")}");
+        Console.WriteLine($"Envergadura de alas: {envergaduraAlas} cm | Puede volar: {(puedeVolar ? "Sí" : "No")}");
     }
 }
