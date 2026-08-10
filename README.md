@@ -41,20 +41,50 @@ La dosis base se calcula como `Peso (kg) × mg/kg indicado`.
 ##### Estructura del proyecto
 
 
+
 Veterinaria/
+
+
 ├─ Program.cs                  # Punto de entrada y lógica de menús
+
+
 ├─ Veterinaria.csproj
+
+
 ├─ Modelos/
+
+
 │  ├─ Mascota.cs                # Clase abstracta base
+
+
 │  ├─ Perro.cs
+
+
 │  ├─ Gato.cs
+
+
 │  ├─ Ave.cs
+
+
 │  └─ Tortuga.cs
+
+
 ├─ Servicios/
+
+
 │  ├─ Veterinaria.cs            # Lógica de gestión de pacientes
+
+
 │  └─ MenuConsola.cs            # Utilidades de entrada/salida en consola
+
+
 └─ Utilidades/
-   └─ GeneradorCodigo.cs        # Generación de códigos únicos
+
+
+└─ GeneradorCodigo.cs        # Generación de códigos únicos
+
+
+
 
 
 ##### Principios de POO aplicados
@@ -75,8 +105,8 @@ Veterinaria/
 ##### Cómo ejecutar
 
 Dentro de la Consola/Terminal (CMD):
-git clone https://github.com/<TU\_USUARIO>/<NOMBRE\_DEL\_REPOSITORIO>.git
-cd <NOMBRE\_DEL\_REPOSITORIO>/Veterinaria
+git clone https://github.com/PRACTICA1\_IPC2N\_202500708.git
+cd PRACTICA1\_IPC2N\_202500708/Veterinaria
 dotnet run
 
 ##### 
